@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tip Calculator</h1>
+        <label for="bill">Bill Amount:</label>
+        <input type="number" id="bill" min="0" step="0.01">
+        <br>
+        <label for="tip">Tip Percentage:</label>
+        <input type="number" id="tip" min="0" max="100" value="10">
+        <br>
+        <button onclick="calculateTip()">Calculate Tip</button>
+        <h2 id="result"></h2>
+    </div>
+    <script>
+        function calculateTip() {
+            const bill = parseFloat(document.getElementById('bill').value);
+            const tipPercentage = parseInt(document.getElementById('tip').value);
+
+            if (isNaN(bill) || isNaN(tipPercentage)) {
+                alert('Please enter valid numbers.');
+                return;
+            }
+
+            const tip = bill * (tipPercentage / 100);
+            const total = bill + tip;
+
+            document.getElementById('result').textContent = `Tip: $${tip.toFixed(2)}
+Total: $${total.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
